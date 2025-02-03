@@ -140,7 +140,7 @@ app.post("/cliente",async(req,res)=>{
 app.delete("/clientes/:clienteId",async (req,res)=>{
     console.log("Tentando excluir o cliente com id:",req.params.clienteId)
     try{
-        const sqlQuery = "DELETE FROM clientes WHERE clienteId = ?"
+        const sqlQuery = "DELETE FROM cliente WHERE clienteId = ?"
         const parametro = [req.params.clienteId]
 
         const banco = new BancoMysql();
@@ -215,7 +215,7 @@ app.post("/pagamento",async(req,res)=>{
 app.delete("/pagamentos/:idpagamento",async (req,res)=>{
     console.log("Tentando excluir o pagamento com id:",req.params.idpagamento)
     try{
-        const sqlQuery = "DELETE FROM pagamentos WHERE idpagamento = ?"
+        const sqlQuery = "DELETE FROM pagamento WHERE idpagamento = ?"
         const parametro = [req.params.idpagamento]
 
         const banco = new BancoMysql();
