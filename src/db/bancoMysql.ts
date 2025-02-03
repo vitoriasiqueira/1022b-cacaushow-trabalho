@@ -1,15 +1,10 @@
 import mysql, { Connection } from 'mysql2/promise';
 
 class BancoMysql {
-    alterar(id: string, chocolate: { nome: any; descricao: any; preco: any; imagem: any; }) {
-        throw new Error('Method not implemented.');
-    }
-    excluir(id: string) {
-        throw new Error('Method not implemented.');
-    }
     listarPorId(id: string) {
         throw new Error('Method not implemented.');
     }
+    
     // Propriedade
     private conexao: Promise<Connection>;
 
@@ -77,28 +72,28 @@ class BancoMysql {
     }
     async alterarCliente(clienteId:string,cliente:{clienteId?:number,nome:string,cpf:string}){
         const conn = await this.getConnection()
-        const sqlQuery = "UPDATE cliente SET nome=?,cpf=? WHERE id = ?"
+        const sqlQuery = "UPDATE cliente SET nome=?,cpf=? WHERE clienteId = ?"
         const parametro = [cliente.nome,cliente.cpf,clienteId]
         const [result, fields] = await conn.query(sqlQuery,parametro);
         return result
     }
-    async alterarPagamento(Idpagamento:string,pagamento:{Idpagamento?:number,formapag:string,descricao:string,valor:string}){
+    async alterarPagamento(idpagamento:string,pagamento:{Idpagamento?:number,formapag:string,descricao:string,valor:string}){
         const conn = await this.getConnection()
-        const sqlQuery = "UPDATE pagamento SET formapag=?,descricao=?,valor=? WHERE id = ?"
-        const parametro = [pagamento.formapag,pagamento.descricao,pagamento.valor,Idpagamento]
+        const sqlQuery = "UPDATE pagamento SET formapag=?,descricao=?,valor=? WHERE idpagamento = ?"
+        const parametro = [pagamento.formapag,pagamento.descricao,pagamento.valor,idpagamento]
         const [result, fields] = await conn.query(sqlQuery,parametro);
         return result
     }
     async alterarEstoque(itemId:string,estoque:{itemId?:number,nomeProduto:string,quantidade:string,localizacao:string}){
         const conn = await this.getConnection()
-        const sqlQuery = "UPDATE estoque SET nomeProduto=?,quantidade=?,localizacao=? WHERE id = ?"
+        const sqlQuery = "UPDATE estoque SET nomeProduto=?,quantidade=?,localizacao=? WHERE itemId = ?"
         const parametro = [estoque.nomeProduto,estoque.quantidade,estoque.localizacao,itemId]
         const [result, fields] = await conn.query(sqlQuery,parametro);
         return result
     }
     async alterarPromocoes(idpromocao:string,promocoes:{idpromocao?:number,titulo:string,descricao:string,validade:Date,cupom:string}){
         const conn = await this.getConnection()
-        const sqlQuery = "UPDATE promocoes SET titulo=?,descricao=?,validade=?,cupom=? WHERE id = ?"
+        const sqlQuery = "UPDATE promocoes SET titulo=?,descricao=?,validade=?,cupom=? WHERE idpromocao = ?"
         const parametro = [promocoes.titulo,promocoes.descricao,promocoes.validade,promocoes.cupom,idpromocao]
         const [result, fields] = await conn.query(sqlQuery,parametro);
         return result
