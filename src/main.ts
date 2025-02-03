@@ -154,8 +154,8 @@ app.delete("/clientes/:clienteId",async (req,res)=>{
     }
 });
 
-app.put("/clientes/:id",async (req,res)=>{
-    console.log("Tentando alterar o cliente com id:",req.params.id)
+app.put("/clientes/:clienteId",async (req,res)=>{
+    console.log("Tentando alterar o cliente com id:",req.params.clienteId)
     try{
         const {nome,cpf} = req.body
         //const sqlQuery = "UPDATE clientes SET nome=?,cpf=? WHERE id = ?"
@@ -163,7 +163,7 @@ app.put("/clientes/:id",async (req,res)=>{
 
         const banco = new BancoMysql();
 
-        const result = await banco.alterarCliente(req.params.id,cliente)
+        const result = await banco.alterarCliente(req.params.clienteId,cliente)
 
         res.status(200).send(result)
     }catch(e){
