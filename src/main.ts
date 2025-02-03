@@ -212,7 +212,7 @@ app.post("/pagamento",async(req,res)=>{
     }
 });
 
-app.delete("/pagamentos/:idpagamento",async (req,res)=>{
+app.delete("/pagamento/:idpagamento",async (req,res)=>{
     console.log("Tentando excluir o pagamento com id:",req.params.idpagamento)
     try{
         const sqlQuery = "DELETE FROM pagamento WHERE idpagamento = ?"
@@ -229,7 +229,7 @@ app.delete("/pagamentos/:idpagamento",async (req,res)=>{
     }
 });
 
-app.put("/pagamentos/:idpagamento",async (req,res)=>{
+app.put("/pagamento/:idpagamento",async (req,res)=>{
     console.log("Tentando alterar o pagamento com id:",req.params.idpagamento)
     try{
         const {formapag,descricao,valor} = req.body
@@ -287,7 +287,7 @@ app.post("/estoque",async(req,res)=>{
     }
 });
 
-app.delete("/estoques/:itemId",async (req,res)=>{
+app.delete("/estoque/:itemId",async (req,res)=>{
     console.log("Tentando excluir o estoque com id:",req.params.itemId)
     try{
         const sqlQuery = "DELETE FROM estoque WHERE itemId = ?"
@@ -304,7 +304,7 @@ app.delete("/estoques/:itemId",async (req,res)=>{
     }
 });
 
-app.put("/estoques/:itemId",async (req,res)=>{
+app.put("/estoque/:itemId",async (req,res)=>{
     console.log("Tentando alterar o estoque com id:",req.params.itemId)
     try{
         const {nomeProduto,quantidade,localizacao} = req.body
