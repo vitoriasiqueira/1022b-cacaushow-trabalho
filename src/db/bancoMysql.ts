@@ -35,7 +35,7 @@ class BancoMysql {
     }
     async excluirChocolates(id:string){
         const conn = await this.getConnection()
-        const sqlQuery = "DELETE FROM chocolate WHERE id = ?"
+        const sqlQuery = "DELETE FROM chocolates WHERE id = ?"
         const parametro = [id]
         const [result, fields] = await conn.query(sqlQuery,parametro);
         return result
