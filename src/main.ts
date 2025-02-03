@@ -88,7 +88,7 @@ app.put("/chocolates/:id",async (req,res)=>{
 
         const banco = new BancoMysql();
 
-        const result = await banco.alterar(req.params.id,chocolate)
+        const result = await banco.alterarChocolate(req.params.id,chocolate)
 
         res.status(200).send(result)
     }catch(e){
@@ -137,15 +137,15 @@ app.post("/cliente",async(req,res)=>{
     }
 });
 
-app.delete("/clientes/:id",async (req,res)=>{
-    console.log("Tentando excluir o cliente com id:",req.params.id)
+app.delete("/clientes/:clienteId",async (req,res)=>{
+    console.log("Tentando excluir o cliente com id:",req.params.clienteId)
     try{
-        const sqlQuery = "DELETE FROM clientes WHERE id = ?"
-        const parametro = [req.params.id]
+        const sqlQuery = "DELETE FROM clientes WHERE clienteId = ?"
+        const parametro = [req.params.clienteId]
 
         const banco = new BancoMysql();
 
-        const result = await banco.excluir(req.params.id)
+        const result = await banco.excluirCliente(req.params.clienteId)
 
         res.status(200).send(result)
     }catch(e){
@@ -157,13 +157,13 @@ app.delete("/clientes/:id",async (req,res)=>{
 app.put("/clientes/:id",async (req,res)=>{
     console.log("Tentando alterar o cliente com id:",req.params.id)
     try{
-        const {nome,descricao,preco,imagem} = req.body
-        //const sqlQuery = "UPDATE clientes SET nome=?,descricao=?,preco=?,imagem=? WHERE id = ?"
-        const cliente = {nome,descricao,preco,imagem}
+        const {nome,cpf} = req.body
+        //const sqlQuery = "UPDATE clientes SET nome=?,cpf=? WHERE id = ?"
+        const cliente = {nome,cpf}
 
         const banco = new BancoMysql();
 
-        const result = await banco.alterar(req.params.id,cliente)
+        const result = await banco.alterarCliente(req.params.id,cliente)
 
         res.status(200).send(result)
     }catch(e){
@@ -212,15 +212,15 @@ app.post("/pagamento",async(req,res)=>{
     }
 });
 
-app.delete("/pagamentos/:id",async (req,res)=>{
-    console.log("Tentando excluir o pagamento com id:",req.params.id)
+app.delete("/pagamentos/:idpagamento",async (req,res)=>{
+    console.log("Tentando excluir o pagamento com id:",req.params.idpagamento)
     try{
-        const sqlQuery = "DELETE FROM pagamentos WHERE id = ?"
-        const parametro = [req.params.id]
+        const sqlQuery = "DELETE FROM pagamentos WHERE idpagamento = ?"
+        const parametro = [req.params.idpagamento]
 
         const banco = new BancoMysql();
 
-        const result = await banco.excluir(req.params.id)
+        const result = await banco.excluirPagamento(req.params.idpagamento)
 
         res.status(200).send(result)
     }catch(e){
@@ -229,16 +229,16 @@ app.delete("/pagamentos/:id",async (req,res)=>{
     }
 });
 
-app.put("/pagamentos/:id",async (req,res)=>{
-    console.log("Tentando alterar o pagamento com id:",req.params.id)
+app.put("/pagamentos/:idpagamento",async (req,res)=>{
+    console.log("Tentando alterar o pagamento com id:",req.params.idpagamento)
     try{
-        const {nome,descricao,preco,imagem} = req.body
-        //const sqlQuery = "UPDATE pagamentos SET nome=?,descricao=?,preco=?,imagem=? WHERE id = ?"
-        const pagamento = {nome,descricao,preco,imagem}
+        const {formapag,descricao,valor} = req.body
+        //const sqlQuery = "UPDATE pagamentos SET formapag=?,descricao=?,valor=? WHERE idpagamento = ?"
+        const pagamento = {formapag,descricao,valor}
 
         const banco = new BancoMysql();
 
-        const result = await banco.alterar(req.params.id,pagamento)
+        const result = await banco.alterarPagamento(req.params.idpagamento,pagamento)
 
         res.status(200).send(result)
     }catch(e){
@@ -287,15 +287,15 @@ app.post("/estoque",async(req,res)=>{
     }
 });
 
-app.delete("/estoques/:id",async (req,res)=>{
-    console.log("Tentando excluir o estoque com id:",req.params.id)
+app.delete("/estoques/:itemId",async (req,res)=>{
+    console.log("Tentando excluir o estoque com id:",req.params.itemId)
     try{
-        const sqlQuery = "DELETE FROM estoque WHERE id = ?"
-        const parametro = [req.params.id]
+        const sqlQuery = "DELETE FROM estoque WHERE itemId = ?"
+        const parametro = [req.params.itemId]
 
         const banco = new BancoMysql();
 
-        const result = await banco.excluir(req.params.id)
+        const result = await banco.excluirEstoque(req.params.itemId)
 
         res.status(200).send(result)
     }catch(e){
@@ -304,16 +304,16 @@ app.delete("/estoques/:id",async (req,res)=>{
     }
 });
 
-app.put("/estoques/:id",async (req,res)=>{
-    console.log("Tentando alterar o estoque com id:",req.params.id)
+app.put("/estoques/:itemId",async (req,res)=>{
+    console.log("Tentando alterar o estoque com id:",req.params.itemId)
     try{
-        const {nome,descricao,preco,imagem} = req.body
-        //const sqlQuery = "UPDATE estoques SET nome=?,descricao=?,preco=?,imagem=? WHERE id = ?"
-        const estoque = {nome,descricao,preco,imagem}
+        const {nomeProduto,quantidade,localizacao} = req.body
+        //const sqlQuery = "UPDATE estoques SET nomeProduto=?,quantidade=?,localizacao=? WHERE itemId = ?"
+        const estoque = {nomeProduto,quantidade,localizacao}
 
         const banco = new BancoMysql();
 
-        const result = await banco.alterar(req.params.id,estoque)
+        const result = await banco.alterarEstoque(req.params.itemId,estoque)
 
         res.status(200).send(result)
     }catch(e){
@@ -363,15 +363,15 @@ app.post("/promocoes",async(req,res)=>{
     }
 });
 
-app.delete("/promocoes/:id",async (req,res)=>{
-    console.log("Tentando excluir a promoção com id:",req.params.id)
+app.delete("/promocoes/:idpromocao",async (req,res)=>{
+    console.log("Tentando excluir a promoção com id:",req.params.idpromocao)
     try{
-        const sqlQuery = "DELETE FROM promocoes WHERE id = ?"
-        const parametro = [req.params.id]
+        const sqlQuery = "DELETE FROM promocoes WHERE idpromocao = ?"
+        const parametro = [req.params.idpromocao]
 
         const banco = new BancoMysql();
 
-        const result = await banco.excluir(req.params.id)
+        const result = await banco.excluirPromocoes(req.params.idpromocao)
 
         res.status(200).send(result)
     }catch(e){
@@ -380,16 +380,16 @@ app.delete("/promocoes/:id",async (req,res)=>{
     }
 });
 
-app.put("/promocoes/:id",async (req,res)=>{
-    console.log("Tentando alterar a promoção com id:",req.params.id)
+app.put("/promocoes/:idpromocao",async (req,res)=>{
+    console.log("Tentando alterar a promoção com id:",req.params.idpromocao)
     try{
-        const {nome,descricao,preco,imagem} = req.body
-        //const sqlQuery = "UPDATE promocoes SET nome=?,descricao=?,preco=?,imagem=? WHERE id = ?"
-        const promocoes = {nome,descricao,preco,imagem}
+        const {titulo,descricao,validade,cupom} = req.body
+        //const sqlQuery = "UPDATE promocoes SET titulo=?,descricao=?,validade=?,cupom=? WHERE idpromocao = ?"
+        const promocoes = {titulo,descricao,validade,cupom}
 
         const banco = new BancoMysql();
 
-        const result = await banco.alterar(req.params.id,promocoes)
+        const result = await banco.alterarPromocoes(req.params.idpromocao,promocoes)
 
         res.status(200).send(result)
     }catch(e){
