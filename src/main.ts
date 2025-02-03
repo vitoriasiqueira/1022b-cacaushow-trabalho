@@ -97,7 +97,7 @@ app.put("/chocolates/:id",async (req,res)=>{
     }
 })
 
-app.get("/cliente",async(req,res)=>{
+app.get("/clientes",async(req,res)=>{
 
     try{
         const conexao = await mysql.createConnection({
@@ -118,7 +118,7 @@ app.get("/cliente",async(req,res)=>{
     }
 });
 
-app.post("/cliente",async(req,res)=>{  
+app.post("/clientes",async(req,res)=>{  
     try{
         const conexao = await mysql.createConnection({
             host: process.env.dbhost?process.env.dbhost:"localhost",
