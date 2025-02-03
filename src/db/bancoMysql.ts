@@ -42,28 +42,28 @@ class BancoMysql {
     }
     async excluirCliente(clienteId:string){
         const conn = await this.getConnection()
-        const sqlQuery = "DELETE FROM cliente WHERE id = ?"
+        const sqlQuery = "DELETE FROM cliente WHERE clienteId = ?"
         const parametro = [clienteId]
         const [result, fields] = await conn.query(sqlQuery,parametro);
         return result
     }
     async excluirPagamento(Idpagamento:string){
         const conn = await this.getConnection()
-        const sqlQuery = "DELETE FROM pagamento WHERE id = ?"
+        const sqlQuery = "DELETE FROM pagamento WHERE idpagamento = ?"
         const parametro = [Idpagamento]
         const [result, fields] = await conn.query(sqlQuery,parametro);
         return result
     }
     async excluirEstoque(itemId:string){
         const conn = await this.getConnection()
-        const sqlQuery = "DELETE FROM estoque WHERE id = ?"
+        const sqlQuery = "DELETE FROM estoque WHERE itemId = ?"
         const parametro = [itemId]
         const [result, fields] = await conn.query(sqlQuery,parametro);
         return result
     }
     async excluirPromocoes(idpromocao:string){
         const conn = await this.getConnection()
-        const sqlQuery = "DELETE FROM promocoes WHERE id = ?"
+        const sqlQuery = "DELETE FROM promocoes WHERE idpromocao = ?"
         const parametro = [idpromocao]
         const [result, fields] = await conn.query(sqlQuery,parametro);
         return result
