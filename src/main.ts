@@ -97,7 +97,7 @@ app.put("/chocolates/:id",async (req,res)=>{
     }
 })
 
-app.get("/clientes",async(req,res)=>{
+app.get("/cliente",async(req,res)=>{
 
     try{
         const conexao = await mysql.createConnection({
@@ -118,7 +118,7 @@ app.get("/clientes",async(req,res)=>{
     }
 });
 
-app.post("/clientes",async(req,res)=>{  
+app.post("/cliente",async(req,res)=>{  
     try{
         const conexao = await mysql.createConnection({
             host: process.env.dbhost?process.env.dbhost:"localhost",
@@ -137,7 +137,7 @@ app.post("/clientes",async(req,res)=>{
     }
 });
 
-app.delete("/clientes/:clienteId",async (req,res)=>{
+app.delete("/cliente/:clienteId",async (req,res)=>{
     console.log("Tentando excluir o cliente com id:",req.params.clienteId)
     try{
         const sqlQuery = "DELETE FROM cliente WHERE clienteId = ?"
@@ -154,7 +154,7 @@ app.delete("/clientes/:clienteId",async (req,res)=>{
     }
 });
 
-app.put("/clientes/:clienteId",async (req,res)=>{
+app.put("/cliente/:clienteId",async (req,res)=>{
     console.log("Tentando alterar o cliente com id:",req.params.clienteId)
     try{
         const {nome,cpf} = req.body
