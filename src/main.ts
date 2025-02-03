@@ -63,14 +63,14 @@ app.post("/chocolates",async(req,res)=>{
 });
 
 app.delete("/chocolates/:id",async (req,res)=>{
-    console.log("Tentando excluir o chocolate com id:",req.params.id)
+    console.log("Tentando excluir o chocolates com id:",req.params.id)
     try{
         const sqlQuery = "DELETE FROM chocolates WHERE id = ?"
         const parametro = [req.params.id]
 
         const banco = new BancoMysql();
 
-        const result = await banco.excluir(req.params.id)
+        const result = await banco.excluirChocolates(req.params.id)
 
         res.status(200).send(result)
     }catch(e){

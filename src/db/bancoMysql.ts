@@ -33,7 +33,7 @@ class BancoMysql {
         const conn = await this.conexao; 
         await conn.end();
     }
-    async excluirChocolates(id:number){
+    async excluirChocolates(id:string){
         const conn = await this.getConnection()
         const sqlQuery = "DELETE FROM chocolate WHERE id = ?"
         const parametro = [id]
