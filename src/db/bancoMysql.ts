@@ -77,7 +77,7 @@ class BancoMysql {
         const [result, fields] = await conn.query(sqlQuery,parametro);
         return result
     }
-    async alterarPagamento(idpagamento:string,pagamento:{Idpagamento?:number,formapag:string,descricao:string,valor:string}){
+    async alterarPagamento(idpagamento:string,pagamento:{idpagamento?:number,formapag:string,descricao:string,valor:string}){
         const conn = await this.getConnection()
         const sqlQuery = "UPDATE pagamento SET formapag=?,descricao=?,valor=? WHERE idpagamento = ?"
         const parametro = [pagamento.formapag,pagamento.descricao,pagamento.valor,idpagamento]
